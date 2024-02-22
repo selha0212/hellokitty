@@ -13,24 +13,35 @@
     $(document).ready(function() {
       $('#add').on('click', function(e) {
           e.preventDefault();
-        const formData = new FormData(document.getElementById('frm'));
-  
-        for (let value of formData.values()) {
-          console.log(value);
+        const params = {
+            nickname : $('#nickname').val(),
+            title : $('#title').val(),
+            content : $('#content').val(),
+            password : $('#password').val()
         }
+        if(params.nickname == "" ){
+            alert('이름 채우시오')
+        }else if( params.title ==""){
+            alert('제목 채우시오')
+        }else if(params.content =="" ){
+            alert('내용 채우시오')
+        }else if(params.password ==""){
+            alert('비밀번호 채우시오')
+        }
+        else{
+            alert('')
+            console.log(params)
         $.ajax({
           url:'http://192.168.0.177:8081/board/write',
           method: 'post',
-          data: formData,
-          contentType: false,
-          processData: false,
+          data: params,
           success:function() {
             location.href="list.html";
           }, error:function(response) {
             alert(response.responseText);
           }
         })
-    
+         }
       })
     })
   </script>
