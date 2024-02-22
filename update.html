@@ -31,15 +31,13 @@
                     location.href = 'list.html';
                 }
             })
-            $('#update').on('click', function (e) {
-                e.preventDefault();
+            $('#update').on('click', function () {
                 const params = {
                     bno: bno,
                     title: $('#title').val(),
                     content: $('#content').val(),
                     password: $('#password').val()
                 }
-                if ($password == password) {
                     $.ajax({
                         url: 'http://192.168.0.177:8081/board/update',
                         method: 'post',
@@ -47,31 +45,29 @@
                         success: function () {
                             alert("변경되었습니다");
                             location.href = 'list.html'
-                        }, error: function () {
-                            alert("변경할 수 없습니다")
+                        }, error: function (e) {
+                            alert(e.responseText)
                         }
                     })
-                } else {
-                    alert("비밀번호가 틀렸습니다")
-                }
+
             })
             $("#delete").on("click", function () {
-                if ($password == password) {
+                const params = {
+                    bno: bno,
+                    password: $('#password').val()
+                }
                     $.ajax({
+
                         url: "http://192.168.0.177:8081/board/delete",
                         method: "post",
-                        data: `bno=${bno}`,
+                        data: params,
                         success: function () {
-                            alert("삭제되었습니다.");
                             location.href = "list.html";
                         },
-                        error: function () {
-                            alert("삭제 못해요");
+                        error: function (e) {
+                            alert(e.responseText);
                         },
                     });
-                } else {
-                    alert("비밀번호가 틀렸습니다.");
-                }
             })
         })
     </script>
