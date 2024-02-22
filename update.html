@@ -13,7 +13,7 @@
         $(document).ready(function () {
             const searchParams = new URLSearchParams(location.search);
             const bno = searchParams.get('bno');
-            const password = sarchParams.get("password");
+
             let $password = $('#password');
             if (bno == null) {
                 location.href = 'list.html';
@@ -23,7 +23,7 @@
                 success: function (result) {
                     $('#title').val(result.title);
                     $('#content').val(result.content);
-                    $('#password').val(result.password);
+
                     $('#photo').attr('src', result.photo);
                 },
                 error(response) {
@@ -44,9 +44,10 @@
                     data: params,
                     success: function () {
                         alert("변경되었습니다");
-                        location.href = 'list.html'
+
                     }, error: function (e) {
                         alert(e.responseText)
+                        location.href = `update.html?bno=${bno}`
                     }
                 })
 
@@ -66,6 +67,8 @@
                     },
                     error: function (e) {
                         alert(e.responseText);
+                        location.href = `update.html?bno=${bno}`
+
                     },
                 });
             })
@@ -89,22 +92,22 @@
                 <form>
                     <div>
                         <div>
-                            <input class="form-control" type="text" name="bno" id="bno">
+                            제목 : <input class="form-control" type="text" name="title" id="title"
+                                placeholder="제목을 입력하세요">
                         </div>
                         <div>
-                            <input class="form-control" type="text" name="title" id="title" placeholder="제목을 입력하세요">
+                            내용 : <input class="form-control" type="text" name="content" id="content"
+                                placeholder="내용을 입력하세요">
                         </div>
                         <div>
-                            <input class="form-control" type="text" name="content" id="content" placeholder="내용을 입력하세요">
-                        </div>
-                        <div>
-                            <input class="form-control" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
+                            비밀번호 : <input class="form-control" type="password" name="password" id="password"
+                                placeholder="비밀번호를 입력하세요">
                         </div>
                         <div>
                             <button id="update" class="btn btn-primary" style="width: 100%;">변경</button>
                         </div>
                         <div>
-                            <button id="delete" class="btn btn-danger"  style="width: 100%;">삭제</button>
+                            <button id="delete" class="btn btn-danger" style="width: 100%;">삭제</button>
                         </div>
                     </div>
                 </form>
