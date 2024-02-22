@@ -12,16 +12,11 @@
   <script>
     $(document).ready(function() {
       $('#add').on('click', function(e) {
+        const formData = new FormData(document.getElementById('frm'));
         e.preventDefault();
-        const formData = {
-            nickname : $('#nickname').val(),
-            title : $('#title').val(),
-            content : $('#content').val(),
-            password : $('#password').val(),
-            photo : $('#photo').val(),
-        }
+        
         $.ajax({
-          url:'http://192.168.0.177:8081/write',
+          url:'http://192.168.0.177:8081/board/write',
           method: 'post',
           data: formData,
           contentType: false,
@@ -32,11 +27,7 @@
             alert(response.responseText);
           }
         })
-        alert(formData.nickname)
-        alert(formData.title)
-        alert(formData.content)
-        alert(formData.password)
-        alert(formData.photo)
+       
       })
     })
   </script>
@@ -60,7 +51,7 @@
       <aside>
       </aside>
       <section>
-        <form action="http://192.168.1.99:8081/write" method="post" id="frm">
+        <form action="http://192.168.0.177:8081/board/write" method="post" id="frm">
           <div class="mb-3 mt-3">
             <label for="photo" class="form-label">사진:</label>
             <input type="file" class="form-control" name="photo" id="photo">
