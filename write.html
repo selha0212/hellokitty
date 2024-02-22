@@ -12,9 +12,11 @@
   <script>
     $(document).ready(function() {
       $('#add').on('click', function(e) {
+          e.preventDefault();
         const formData = new FormData(document.getElementById('frm'));
-        e.preventDefault();
-        
+        for (let value of formData.values()) {
+          console.log(value);
+        }
         $.ajax({
           url:'http://192.168.0.177:8081/board/write',
           method: 'post',
@@ -27,20 +29,14 @@
             alert(response.responseText);
           }
         })
-       
+       alert('')
       })
     })
   </script>
 </head>
 <body>
   <div id="page">
-    <header>
-      <h1>글쓰기</h1>
-      <div id="search">
-        <input type="text" placeholder="검색어를 입력하세요">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-    </header>
+    
     <nav>
       <ul>
         <li><a href="list.html">HOME</a></li>
