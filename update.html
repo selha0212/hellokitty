@@ -17,10 +17,8 @@
                 location.href = 'list.html';
             }
             $.ajax({
-                url: 'http://서버IP주소:8081/board/update' + bno,
-                method: 'post',
+                url: 'http://192.168.0.177:8081/board/read?bno=' + bno,
                 success: function (result) {
-                    $('#bno').val(result.bno);
                     $('#title').val(result.title);
                     $('#content').val(result.content);
                     $('#password').val(result.password);
@@ -32,7 +30,8 @@
                 }
             })
         })
-        $('#update').on('click',function(){
+        $('#update').on('click',function(e){
+            e.preventDefault();
             const params = {
                 bno : bno,
                 title : $('#title').val(),
@@ -40,7 +39,7 @@
                 password : $('#password').val()
             }
             $.ajax({
-                url:'http://서버IP주소:8081/board/update',
+                url:'http://192.168.0.177:8081/board/update',
                 method:'post',
                 data: params,
                 success:function(){
