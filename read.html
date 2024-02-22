@@ -27,6 +27,7 @@
                     $('#nickname').text(result.nickname);
                     $('#writeday').text(result.writeday);
                     $('#readcnt').text(result.readcnt);
+                    $('#content').text(result.content)
                     $('#update').attr('href', `update.html?bno=${bno}`)
                 }, error:function(response) {
                     alert(response.responseText)
