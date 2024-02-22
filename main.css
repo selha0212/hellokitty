@@ -22,13 +22,13 @@
   }
   
   aside {
-    width: 100px;
+    width: 150px;
     height:200px;
     background-color: white;
   }
   
   section {
-    width: 800px;
+    width: 700px;
     min-height: 600px;
     background-color: white;
   }
@@ -95,3 +95,6 @@
   nav>ul>li:hover a {
     color:#aaa
   }
+  
+  #img1 {width: 150px; height: 200px;}
+  #img2 {width: 150px; height: 200px;}
